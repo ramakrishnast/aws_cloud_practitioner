@@ -1,0 +1,164 @@
+# CloudCert Lab exam configuration.
+#
+# Formats follow the official AWS exam guides (CLF-C02, SAA-C03, SAP-C02).
+# AWS revises exam guides from time to time: check
+# https://aws.amazon.com/certification/ and update this file if anything changes.
+# Nothing else in the app hard-codes exam settings.
+#
+# estimated_raw_cut_pct: AWS uses scaled scoring and does not publish a raw cut
+# score. The app maps raw percent to an *estimated* 100-1000 scale so that this
+# raw percentage lands exactly on the passing score. Treat results as estimates.
+#
+# difficulty_blend: how "Mixed" difficulty is distributed for this exam (percent).
+
+exams:
+  clf-c02:
+    name: AWS Certified Cloud Practitioner
+    short_name: Cloud Practitioner
+    code: CLF-C02
+    question_count: 65
+    time_limit_minutes: 90
+    passing_score: 700
+    estimated_raw_cut_pct: 70
+    guide_url: https://aws.amazon.com/certification/certified-cloud-practitioner/
+    difficulty_blend: {easy: 35, medium: 40, hard: 20, tough: 5}
+    domains:
+      - id: 1
+        name: Cloud Concepts
+        weight: 24
+        tasks:
+          - "1.1 Define the benefits of the AWS Cloud"
+          - "1.2 Identify design principles of the AWS Cloud"
+          - "1.3 Understand the benefits of and strategies for migration to the AWS Cloud"
+          - "1.4 Understand concepts of cloud economics"
+      - id: 2
+        name: Security and Compliance
+        weight: 30
+        tasks:
+          - "2.1 Understand the AWS shared responsibility model"
+          - "2.2 Understand AWS Cloud security, governance, and compliance concepts"
+          - "2.3 Identify AWS access management capabilities"
+          - "2.4 Identify components and resources for security"
+      - id: 3
+        name: Cloud Technology and Services
+        weight: 34
+        tasks:
+          - "3.1 Define methods of deploying and operating in the AWS Cloud"
+          - "3.2 Define the AWS global infrastructure"
+          - "3.3 Identify AWS compute services"
+          - "3.4 Identify AWS database services"
+          - "3.5 Identify AWS network services"
+          - "3.6 Identify AWS storage services"
+          - "3.7 Identify AWS artificial intelligence and machine learning (AI/ML) services and analytics services"
+          - "3.8 Identify services from other in-scope AWS service categories"
+      - id: 4
+        name: Billing, Pricing, and Support
+        weight: 12
+        tasks:
+          - "4.1 Compare AWS pricing models"
+          - "4.2 Understand resources for billing, budget, and cost management"
+          - "4.3 Identify AWS technical resources and AWS Support options"
+
+  saa-c03:
+    name: AWS Certified Solutions Architect - Associate
+    short_name: Solutions Architect Associate
+    code: SAA-C03
+    question_count: 65
+    time_limit_minutes: 130
+    passing_score: 720
+    estimated_raw_cut_pct: 72
+    guide_url: https://aws.amazon.com/certification/certified-solutions-architect-associate/
+    difficulty_blend: {easy: 15, medium: 40, hard: 35, tough: 10}
+    domains:
+      - id: 1
+        name: Design Secure Architectures
+        weight: 30
+        tasks:
+          - "1.1 Design secure access to AWS resources"
+          - "1.2 Design secure workloads and applications"
+          - "1.3 Determine appropriate data security controls"
+      - id: 2
+        name: Design Resilient Architectures
+        weight: 26
+        tasks:
+          - "2.1 Design scalable and loosely coupled architectures"
+          - "2.2 Design highly available and/or fault-tolerant architectures"
+      - id: 3
+        name: Design High-Performing Architectures
+        weight: 24
+        tasks:
+          - "3.1 Determine high-performing and/or scalable storage solutions"
+          - "3.2 Design high-performing and elastic compute solutions"
+          - "3.3 Determine high-performing database solutions"
+          - "3.4 Determine high-performing and/or scalable network architectures"
+          - "3.5 Determine high-performing data ingestion and transformation solutions"
+      - id: 4
+        name: Design Cost-Optimized Architectures
+        weight: 20
+        tasks:
+          - "4.1 Design cost-optimized storage solutions"
+          - "4.2 Design cost-optimized compute solutions"
+          - "4.3 Design cost-optimized database solutions"
+          - "4.4 Design cost-optimized network architectures"
+
+  sap-c02:
+    name: AWS Certified Solutions Architect - Professional
+    short_name: Solutions Architect Professional
+    code: SAP-C02
+    question_count: 75
+    time_limit_minutes: 180
+    passing_score: 750
+    estimated_raw_cut_pct: 75
+    guide_url: https://aws.amazon.com/certification/certified-solutions-architect-professional/
+    difficulty_blend: {easy: 5, medium: 25, hard: 40, tough: 30}
+    domains:
+      - id: 1
+        name: Design Solutions for Organizational Complexity
+        weight: 26
+        tasks:
+          - "1.1 Architect network connectivity strategies"
+          - "1.2 Prescribe security controls"
+          - "1.3 Design reliable and resilient architectures"
+          - "1.4 Design a multi-account AWS environment"
+          - "1.5 Determine cost optimization and visibility strategies"
+      - id: 2
+        name: Design for New Solutions
+        weight: 29
+        tasks:
+          - "2.1 Design a deployment strategy to meet business requirements"
+          - "2.2 Design a solution to ensure business continuity"
+          - "2.3 Determine security controls based on requirements"
+          - "2.4 Design a strategy to meet reliability requirements"
+          - "2.5 Design a solution to meet performance objectives"
+          - "2.6 Determine a cost optimization strategy to meet solution goals and objectives"
+      - id: 3
+        name: Continuous Improvement for Existing Solutions
+        weight: 25
+        tasks:
+          - "3.1 Determine a strategy to improve overall operational excellence"
+          - "3.2 Determine a strategy to improve security"
+          - "3.3 Determine a strategy to improve performance"
+          - "3.4 Determine a strategy to improve reliability"
+          - "3.5 Identify opportunities for cost optimizations"
+      - id: 4
+        name: Accelerate Workload Migration and Modernization
+        weight: 20
+        tasks:
+          - "4.1 Select existing workloads and processes for potential migration"
+          - "4.2 Determine the optimal migration approach for existing workloads"
+          - "4.3 Determine a new architecture for existing workloads"
+          - "4.4 Determine opportunities for modernization and enhancements"
+
+difficulties:
+  easy: "Definitions and single-service recall"
+  medium: "Choosing the right service for a stated need"
+  hard: "Multi-service scenarios with tradeoffs (cost vs resilience vs performance)"
+  tough: "Long, professional-level scenarios with several plausible answers, including multiple-response questions"
+
+practice:
+  drill_min_questions: 10
+  drill_max_questions: 25
+  # Warnings shown in full simulations (minutes remaining)
+  timer_warnings_minutes: [15, 5]
+  # Spaced repetition (Leitner boxes). Interval in days for each box.
+  srs_intervals_days: [0, 1, 3, 7, 14, 30]
