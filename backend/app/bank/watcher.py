@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import logging
+import os
 import threading
 from pathlib import Path
 
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
 from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 
 from ..db import SessionLocal
 from .importer import import_file, is_bank_csv
@@ -35,7 +37,9 @@ class BankWatcher:
         self.debounce_sec = debounce_sec
         self._timers: dict[Path, threading.Timer] = {}
         self._lock = threading.Lock()
-        self._observer = Observer()
+        # Native file events don't always cross Docker bind mounts; polling does.
+        polling = os.getenv("CLOUDCERT_WATCH_POLLING", "0") not in ("0", "false", "no", "")
+        self._observer = PollingObserver(timeout=3) if polling else Observer()
 
     def start(self) -> None:
         self.root.mkdir(parents=True, exist_ok=True)

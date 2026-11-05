@@ -1,0 +1,16 @@
+services:
+  cloudcert:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # File events don't always cross Docker Desktop bind mounts; poll instead.
+      CLOUDCERT_WATCH_POLLING: "1"
+    volumes:
+      - ./question_bank:/app/question_bank
+      - ./config:/app/config:ro
+      - ./data:/app/data
+    restart: unless-stopped
