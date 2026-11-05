@@ -10,6 +10,7 @@ export function title(s) {
 
 export function fmtDuration(sec) {
   if (sec == null) return "–";
+  if (sec > 0 && sec < 1) return "<1s";
   sec = Math.max(0, Math.round(sec));
   const h = Math.floor(sec / 3600);
   const m = Math.floor((sec % 3600) / 60);
@@ -34,17 +35,27 @@ export function fmtDate(iso) {
   return new Date(iso).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 }
 
+// One shared theme state: every component using useTheme() (charts included)
+// re-renders when the theme is toggled anywhere.
+const themeListeners = new Set();
+
+function setDarkMode(dark) {
+  document.documentElement.classList.toggle("dark", dark);
+  try {
+    localStorage.setItem("cc-theme", dark ? "dark" : "light");
+  } catch {
+    /* storage unavailable */
+  }
+  themeListeners.forEach((fn) => fn(dark));
+}
+
 export function useTheme() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    try {
-      localStorage.setItem("cc-theme", dark ? "dark" : "light");
-    } catch {
-      /* storage unavailable */
-    }
-  }, [dark]);
-  return [dark, setDark];
+    themeListeners.add(setDark);
+    return () => themeListeners.delete(setDark);
+  }, []);
+  return [dark, setDarkMode];
 }
 
 /** Chart colors per theme (reference palette, validated for both surfaces). */

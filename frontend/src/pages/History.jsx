@@ -25,7 +25,7 @@ function Trend({ points, passing }) {
     <ResponsiveContainer width="100%" height={260}>
       <LineChart data={data} margin={{ top: 12, right: 16, bottom: 0, left: -12 }}>
         <CartesianGrid vertical={false} stroke={c.grid} />
-        <XAxis dataKey="n" tick={{ fill: c.axis, fontSize: 12 }} tickLine={false} axisLine={{ stroke: c.grid }} label={{ value: "Attempt", position: "insideBottomRight", offset: -2, fill: c.axis, fontSize: 11 }} />
+        <XAxis dataKey="n" tick={{ fill: c.axis, fontSize: 12 }} tickLine={false} axisLine={{ stroke: c.grid }} allowDecimals={false} />
         <YAxis domain={[100, 1000]} ticks={[100, 400, 700, 1000]} tick={{ fill: c.axis, fontSize: 12 }} tickLine={false} axisLine={false} />
         <ReferenceLine y={passing} stroke={c.ref} strokeDasharray="4 4" label={{ value: `Pass ${passing}`, position: "insideTopLeft", fill: c.axis, fontSize: 11 }} />
         <Tooltip content={<TrendTooltip />} cursor={{ stroke: c.axis, strokeDasharray: "2 2" }} />
